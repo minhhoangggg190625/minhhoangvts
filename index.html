@@ -14,7 +14,7 @@ body {
 /* HEADER */
 .header {
   background: #fff;
-  border-bottom: 4px solid #bc2772; /* đổi màu */
+  border-bottom: 4px solid #bc2772;
   padding: 15px 0;
   margin-bottom: 10px;
 }
@@ -22,7 +22,7 @@ body {
 .header h2 {
   margin: 0;
   text-align: center;
-  color: #bc2772; /* đổi màu */
+  color: #bc2772;
 }
 
 /* CONTAINER */
@@ -44,7 +44,7 @@ body {
   background: #eee;
   padding: 8px;
   margin: 10px 0;
-  border: 1px solid #bc2772; /* đổi màu */
+  border: 1px solid #bc2772;
 }
 
 .btn {
@@ -55,12 +55,12 @@ body {
 }
 
 .btn-copy { background: gray; color: white; }
-.btn-random { background: #bc2772; color: white; position: relative; } /* đổi màu */
+.btn-random { background: #bc2772; color: white; position: relative; }
 
 /* STICKER trên Random */
 .sticker {
   display: inline-block;
-  background: #ff66a1; /* có thể là nhạt hơn để nổi bật sticker */
+  background: #1e90ff; /* màu sticker mới */
   color: white;
   font-size: 12px;
   padding: 2px 4px;
@@ -140,7 +140,7 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
-  background: #bc2772; /* đổi màu */
+  background: #bc2772;
   color: #fff;
   font-size: 10px;
   padding: 2px 5px;
@@ -155,10 +155,11 @@ body {
   font-size: 13px;
   height: 32px;
   overflow: hidden;
+  color: #000; /* tên sản phẩm màu đen */
 }
 
 .price {
-  color: #bc2772; /* đổi màu */
+  color: #bc2772; /* giá vẫn màu hồng */
   font-weight: bold;
   font-size: 15px;
   margin: 4px 0;
@@ -174,13 +175,16 @@ body {
 .rating { color: #f5a623; }
 .rating span { color: #555; }
 
-.sold { color: #777; }
+/* chữ Đã bán + số lượng màu đen */
+.sold { 
+  color: #000; 
+}
 
 /* BUTTON */
 .btn-buy {
   width: 100%;
   border: none;
-  background: #bc2772; /* đổi màu */
+  background: #bc2772;
   color: white;
   padding: 8px;
   cursor: pointer;
@@ -188,7 +192,7 @@ body {
 }
 
 .btn-buy:hover {
-  background: #991e60; /* đậm hơn khi hover */
+  background: #991e60;
 }
 </style>
 </head>
