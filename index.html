@@ -30,6 +30,7 @@ body {
   width: 95%;
   max-width: 1200px;
   margin: auto;
+  position: relative;
 }
 
 /* ADDRESS */
@@ -83,7 +84,7 @@ body {
   gap: 10px;
   background: #eee;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .filter-box input,
@@ -98,6 +99,42 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
+  position: relative;
+}
+
+/* SPINNER CENTER */
+.spinner-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  text-align: center;
+  z-index: 10;
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #bc2772;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
 }
 
 /* CARD */
@@ -251,6 +288,12 @@ body {
 <!-- LIST -->
 <div id="product-list" class="grid"></div>
 
+<!-- SPINNER CENTER -->
+<div class="spinner-overlay" id="spinner-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Đang cập nhật kho hàng...</div>
+</div>
+
 </div>
 
 <script>
@@ -279,36 +322,12 @@ function formatSold(n) {
   return n >= 1000 ? (n/1000).toFixed(1)+"k" : n;
 }
 
-// DATA 50 SẢN PHẨM
-const products = [
-  // 20 sản phẩm cụ thể
-  { name: "iPhone 13", price: 15000000, rating: 4.8, sold: 1200, image: "https://picsum.photos/300?1", link: "https://shopee.vn/" },
-  { name: "iPhone 14", price: 18000000, rating: 4.9, sold: 900, image: "https://picsum.photos/300?2", link: "https://shopee.vn/" },
-  { name: "Samsung Galaxy S21", price: 12000000, rating: 4.7, sold: 800, image: "https://picsum.photos/300?3", link: "https://shopee.vn/" },
-  { name: "Samsung Galaxy A52", price: 9000000, rating: 4.5, sold: 700, image: "https://picsum.photos/300?4", link: "https://shopee.vn/" },
-  { name: "Xiaomi Redmi Note 11", price: 6000000, rating: 4.3, sold: 1500, image: "https://picsum.photos/300?5", link: "https://shopee.vn/" },
-  { name: "Xiaomi Poco X4", price: 5500000, rating: 4.2, sold: 1300, image: "https://picsum.photos/300?6", link: "https://shopee.vn/" },
-  { name: "OPPO Reno 6", price: 6500000, rating: 4.6, sold: 900, image: "https://picsum.photos/300?7", link: "https://shopee.vn/" },
-  { name: "OPPO A57", price: 4000000, rating: 4.3, sold: 1100, image: "https://picsum.photos/300?8", link: "https://shopee.vn/" },
-  { name: "Vivo V23", price: 7000000, rating: 4.5, sold: 800, image: "https://picsum.photos/300?9", link: "https://shopee.vn/" },
-  { name: "Vivo Y76", price: 5000000, rating: 4.4, sold: 600, image: "https://picsum.photos/300?10", link: "https://shopee.vn/" },
-  { name: "Realme 9", price: 4500000, rating: 4.3, sold: 750, image: "https://picsum.photos/300?11", link: "https://shopee.vn/" },
-  { name: "Realme 9 Pro", price: 5500000, rating: 4.5, sold: 500, image: "https://picsum.photos/300?12", link: "https://shopee.vn/" },
-  { name: "Nokia G50", price: 4500000, rating: 4.2, sold: 400, image: "https://picsum.photos/300?13", link: "https://shopee.vn/" },
-  { name: "Nokia X20", price: 6000000, rating: 4.3, sold: 350, image: "https://picsum.photos/300?14", link: "https://shopee.vn/" },
-  { name: "Huawei P40", price: 8000000, rating: 4.5, sold: 600, image: "https://picsum.photos/300?15", link: "https://shopee.vn/" },
-  { name: "Huawei Nova 9", price: 7000000, rating: 4.4, sold: 500, image: "https://picsum.photos/300?16", link: "https://shopee.vn/" },
-  { name: "Asus ROG Phone 5", price: 15000000, rating: 4.7, sold: 300, image: "https://picsum.photos/300?17", link: "https://shopee.vn/" },
-  { name: "Asus Zenfone 8", price: 11000000, rating: 4.6, sold: 400, image: "https://picsum.photos/300?18", link: "https://shopee.vn/" },
-  { name: "Google Pixel 6", price: 14000000, rating: 4.8, sold: 250, image: "https://picsum.photos/300?19", link: "https://shopee.vn/" },
-  { name: "Google Pixel 7", price: 16000000, rating: 4.9, sold: 300, image: "https://picsum.photos/300?20", link: "https://shopee.vn/" },
-];
-
-// 30 sản phẩm còn lại tự sinh
-for (let i = 21; i <= 50; i++) {
+// DATA SẢN PHẨM 50 SP
+const products = [];
+for (let i = 1; i <= 50; i++) {
   products.push({
     name: `Điện thoại ${i}`,
-    price: Math.floor(Math.random() * 10000000) + 3000000,
+    price: Math.floor(Math.random() * 15000000) + 3000000,
     rating: (Math.random() * 2 + 3).toFixed(1),
     sold: Math.floor(Math.random() * 2000),
     image: `https://picsum.photos/300?${i}`,
@@ -320,9 +339,7 @@ for (let i = 21; i <= 50; i++) {
 function renderProducts(list, initial=false) {
   const box = document.getElementById("product-list");
   box.innerHTML = "";
-
-  let showList = list;
-  if (initial) showList = list.slice(0,5); // chỉ 5 sản phẩm đầu tiên khi load
+  let showList = initial ? list.slice(0,5) : list;
 
   showList.forEach(p => {
     box.innerHTML += `
@@ -347,20 +364,25 @@ function renderProducts(list, initial=false) {
   });
 }
 
-// FILTER
+// FILTER với spinner
 function filterProducts() {
-  let list = [...products];
+  const overlay = document.getElementById("spinner-overlay");
+  overlay.style.display = "block";
 
-  const s = search.value.toLowerCase();
-  const m = money.value;
-  const sort = sortEl.value;
+  setTimeout(() => {
+    let list = [...products];
+    const s = search.value.toLowerCase();
+    const m = money.value;
+    const sort = sortEl.value;
 
-  if (s) list = list.filter(p => p.name.toLowerCase().includes(s));
-  if (m) list = list.filter(p => p.price <= m);
+    if (s) list = list.filter(p => p.name.toLowerCase().includes(s));
+    if (m) list = list.filter(p => p.price <= m);
 
-  list.sort((a,b)=> sort==="asc"? a.price-b.price : b.price-a.price);
+    list.sort((a,b)=> sort==="asc"? a.price-b.price : b.price-a.price);
 
-  renderProducts(list); // khi tìm kiếm hiển thị tất cả kết quả
+    renderProducts(list);
+    overlay.style.display = "none";
+  }, 800);
 }
 
 const search = document.getElementById("search");
@@ -374,9 +396,8 @@ sortEl.onchange = filterProducts;
 // LOAD
 window.onload = () => {
   randomAddress();
-  renderProducts(products, true); // chỉ 5 sản phẩm đầu tiên
+  renderProducts(products, true);
 };
-
 </script>
 
 </body>
