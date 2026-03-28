@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Shop Demo</title>
+<title>Shop Demo Responsive</title>
 
 <style>
 body {
@@ -27,7 +27,8 @@ body {
 
 /* CONTAINER */
 .container {
-  width: 1200px;
+  width: 95%;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -60,7 +61,7 @@ body {
 /* STICKER trên Random */
 .sticker {
   display: inline-block;
-  background: #1e90ff; /* màu sticker mới */
+  background: #1e90ff;
   color: white;
   font-size: 12px;
   padding: 2px 4px;
@@ -78,6 +79,7 @@ body {
 /* FILTER */
 .filter-box {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   background: #eee;
   padding: 10px;
@@ -86,14 +88,15 @@ body {
 
 .filter-box input,
 .filter-box select {
-  flex: 1;
+  flex: 1 1 150px;
   padding: 8px;
+  min-width: 100px;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
 }
 
@@ -155,11 +158,11 @@ body {
   font-size: 13px;
   height: 32px;
   overflow: hidden;
-  color: #000; /* tên sản phẩm màu đen */
+  color: #000;
 }
 
 .price {
-  color: #bc2772; /* giá vẫn màu hồng */
+  color: #bc2772;
   font-weight: bold;
   font-size: 15px;
   margin: 4px 0;
@@ -175,10 +178,7 @@ body {
 .rating { color: #f5a623; }
 .rating span { color: #555; }
 
-/* chữ Đã bán + số lượng màu đen */
-.sold { 
-  color: #000; 
-}
+.sold { color: #000; }
 
 /* BUTTON */
 .btn-buy {
@@ -194,12 +194,35 @@ body {
 .btn-buy:hover {
   background: #991e60;
 }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .filter-box input, .filter-box select {
+    flex: 1 1 100%;
+  }
+}
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  .header h2 {
+    font-size: 18px;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .name {
+    font-size: 12px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <h2>🛒 DANH SÁCH SẢN PHẨM</h2>
 </div>
@@ -219,7 +242,6 @@ body {
 <div class="filter-box">
   <input type="text" id="search" placeholder="Tìm sản phẩm...">
   <input type="number" id="money" placeholder="Số tiền (đ)">
-  
   <select id="sort">
     <option value="desc">Giá: Cao → Thấp</option>
     <option value="asc">Giá: Thấp → Cao</option>
@@ -273,26 +295,21 @@ function renderProducts(list) {
   list.forEach(p => {
     box.innerHTML += `
       <div class="card">
-
         <a href="${p.link}" target="_blank">
           <div class="img-box">
             <div class="badge">Mall</div>
             <img src="${p.image}">
           </div>
-
           <div class="info">
             <div class="name">${p.name}</div>
             <div class="price">₫${p.price.toLocaleString()}</div>
-
             <div class="meta">
               <div class="rating">⭐ <span>${p.rating.toFixed(1)}</span></div>
               <div class="sold">Đã bán ${formatSold(p.sold)}</div>
             </div>
           </div>
         </a>
-
         <button class="btn-buy" onclick="window.open('${p.link}','_blank')">Mua ngay</button>
-
       </div>
     `;
   });
