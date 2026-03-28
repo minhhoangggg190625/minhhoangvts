@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Shop Demo Responsive</title>
+<title>Shop Demo Sinh Động</title>
 
 <style>
 body {
@@ -15,16 +15,15 @@ body {
 
 /* HEADER */
 .header {
-  background: #fff;
+  background: linear-gradient(90deg, #ff9a9e, #bc2772);
+  color: #fff;
   border-bottom: 4px solid #bc2772;
   padding: 15px 0;
   margin-bottom: 10px;
-}
-
-.header h2 {
-  margin: 0;
   text-align: center;
-  color: #bc2772;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 /* CONTAINER */
@@ -129,7 +128,7 @@ body {
   display: none;
   text-align: center;
   z-index: 9999;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   padding: 20px 30px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
@@ -163,12 +162,13 @@ body {
   border-radius: 4px;
   border: 1px solid #eee;
   overflow: hidden;
-  transition: 0.2s;
+  transition: 0.3s;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* LINK */
@@ -184,6 +184,7 @@ body {
   width: 100%;
   padding-top: 100%;
   background: #fafafa;
+  overflow: hidden;
 }
 
 .img-box img {
@@ -193,6 +194,11 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover .img-box img {
+  transform: scale(1.05);
 }
 
 /* BADGE */
@@ -200,11 +206,16 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
-  background: #bc2772;
   color: #fff;
   font-size: 10px;
   padding: 2px 5px;
+  border-radius: 3px;
 }
+
+.badge.mall { background: #bc2772; }
+.badge.sale { background: #ff5722; }
+.badge.new { background: #1e90ff; }
+.badge.hot { background: #ff9800; }
 
 /* INFO */
 .info {
@@ -253,10 +264,12 @@ body {
   font-size: 13px;
   font-weight: bold;
   animation: bounceBtn 1s infinite;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .btn-buy:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   background: #991e60;
 }
 
@@ -273,7 +286,7 @@ body {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
-  .header h2 {
+  .header {
     font-size: 18px;
   }
   .price {
@@ -289,7 +302,7 @@ body {
 <body>
 
 <div class="header">
-  <h2>🛒 DANH SÁCH SẢN PHẨM</h2>
+  🛒 DANH SÁCH SẢN PHẨM
 </div>
 
 <div class="container">
@@ -351,6 +364,7 @@ function formatSold(n) {
 
 // DATA SẢN PHẨM 50 SP
 const products = [];
+const badges = ["sale","new","hot","mall"];
 for (let i = 1; i <= 50; i++) {
   products.push({
     name: `Điện thoại ${i}`,
@@ -358,7 +372,8 @@ for (let i = 1; i <= 50; i++) {
     rating: (Math.random() * 2 + 3).toFixed(1),
     sold: Math.floor(Math.random() * 2000),
     image: `https://picsum.photos/300?${i}`,
-    link: "https://shopee.vn/"
+    link: "https://shopee.vn/",
+    badge: badges[Math.floor(Math.random() * badges.length)]
   });
 }
 
@@ -373,8 +388,8 @@ function renderProducts(list, initial=false) {
       <div class="card">
         <a href="${p.link}" target="_blank">
           <div class="img-box">
-            <div class="badge">Mall</div>
-            <img src="${p.image}">
+            <div class="badge ${p.badge}">${p.badge.toUpperCase()}</div>
+            <img src="${p.image}" loading="lazy">
           </div>
           <div class="info">
             <div class="name">${p.name}</div>
