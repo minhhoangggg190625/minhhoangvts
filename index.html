@@ -9,6 +9,8 @@ body {
   font-family: Arial;
   background: #f5f5f5;
   margin: 0;
+  position: relative;
+  min-height: 100vh;
 }
 
 /* HEADER */
@@ -54,10 +56,25 @@ body {
   border: none;
   cursor: pointer;
   margin: 3px;
+  font-weight: bold;
 }
 
-.btn-copy { background: gray; color: white; }
-.btn-random { background: #bc2772; color: white; position: relative; }
+.btn-copy { 
+  background: #ff5722; 
+  color: white; 
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-copy:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.btn-random { 
+  background: #bc2772; 
+  color: white; 
+  position: relative; 
+}
 
 /* STICKER trên Random */
 .sticker {
@@ -100,20 +117,22 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
   position: relative;
+  min-height: 300px;
 }
 
 /* SPINNER CENTER */
 .spinner-overlay {
-  position: absolute;
+  position: fixed; /* luôn đứng trên cùng */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
   text-align: center;
-  z-index: 10;
+  z-index: 9999;
   background: rgba(255,255,255,0.8);
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .spinner {
@@ -134,7 +153,8 @@ body {
 .loading-text {
   font-size: 14px;
   color: #555;
-  margin-top: 8px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 /* CARD */
@@ -217,7 +237,12 @@ body {
 
 .sold { color: #000; }
 
-/* BUTTON */
+/* BUTTON MUA NGAY ANIMATION NHÚN */
+@keyframes bounceBtn {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
 .btn-buy {
   width: 100%;
   border: none;
@@ -226,6 +251,9 @@ body {
   padding: 8px;
   cursor: pointer;
   font-size: 13px;
+  font-weight: bold;
+  animation: bounceBtn 1s infinite;
+  transition: 0.2s;
 }
 
 .btn-buy:hover {
@@ -288,7 +316,7 @@ body {
 <!-- LIST -->
 <div id="product-list" class="grid"></div>
 
-<!-- SPINNER CENTER -->
+<!-- SPINNER & TEXT CỐ ĐỊNH Ở TRUNG TÂM -->
 <div class="spinner-overlay" id="spinner-overlay">
   <div class="spinner"></div>
   <div class="loading-text">Đang cập nhật kho hàng...</div>
@@ -297,7 +325,6 @@ body {
 </div>
 
 <script>
-
 // ADDRESS
 const addresses = [
   "269 Bùi Xương Trạch",
