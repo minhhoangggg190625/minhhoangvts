@@ -6,7 +6,7 @@
 
 <style>
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #f5f5f5;
   margin: 0;
   min-height: 100vh;
@@ -21,29 +21,26 @@ body {
   font-weight: bold;
   font-size: 26px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  position: relative;
 }
 
-/* BANNER SLIDER */
+/* BANNER */
 .slider {
   width: 95%;
   max-width: 1200px;
-  margin: 10px auto;
-  border-radius: 8px;
+  height: 450px; /* tăng chiều cao */
+  margin: 20px auto;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
+  background: #bc2772; /* nền khi ảnh chưa load */
 }
 
-.slide {
+.slider img {
   width: 100%;
-  display: none;
-}
-
-.slide img {
-  width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  display: block;
+  border-radius: 10px;
 }
 
 /* CONTAINER */
@@ -110,7 +107,6 @@ body {
   animation: bounce 1s infinite;
 }
 
-/* BOUNCE */
 @keyframes bounce {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
@@ -204,14 +200,12 @@ body {
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
-/* LINK */
 .card a {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-/* IMAGE */
 .img-box {
   position: relative;
   width: 100%;
@@ -234,7 +228,6 @@ body {
   transform: scale(1.1);
 }
 
-/* BADGE */
 .badge {
   position: absolute;
   top: 8px;
@@ -256,7 +249,6 @@ body {
 .badge.new { background: #1e90ff; }
 .badge.hot { background: #ff9800; }
 
-/* INFO */
 .info {
   padding: 10px;
 }
@@ -275,7 +267,6 @@ body {
   margin: 6px 0;
 }
 
-/* META */
 .meta {
   display: flex;
   justify-content: space-between;
@@ -287,7 +278,6 @@ body {
 
 .sold { color: #000; }
 
-/* BUTTON MUA NGAY */
 @keyframes bounceBtn {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
@@ -314,17 +304,11 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-  .filter-box input, .filter-box select {
-    flex: 1 1 100%;
-  }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .filter-box input, .filter-box select { flex: 1 1 100%; }
 }
 @media (max-width: 480px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .header { font-size: 20px; }
   .price { font-size: 16px; }
   .name { font-size: 14px; }
@@ -336,18 +320,11 @@ body {
 
 <div class="header">🛒 DANH SÁCH SẢN PHẨM</div>
 
-<!-- SLIDER -->
+<!-- BANNER CHỈ 1 ẢNH -->
 <div class="slider">
-  <div class="slide active">
-    <img src="https://picsum.photos/1200/250?random=1" alt="">
-  </div>
-  <div class="slide">
-    <img src="https://picsum.photos/1200/250?random=2" alt="">
-  </div>
-  <div class="slide">
-    <img src="https://picsum.photos/1200/250?random=3" alt="">
-  </div>
+  <img src="https://scontent.fsgn5-7.fna.fbcdn.net/v/t39.30808-6/661383124_1624121922128714_3909938372847597089_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=TqSkqnMInR8Q7kNvwEScPAh&_nc_oc=AdoTh-9lyV1m2yHzXzR2Sy8ksHYmfEQ6zOZ_tU1dNCNB00ecrxhmX2zQeMOU0Fhp5MsMVxNs0d4t5-6p6Q5Mossz&_nc_zt=23&_nc_ht=scontent.fsgn5-7.fna&_nc_gid=F37BPaGU8YtbMrZvIg-YEg&_nc_ss=7a32e&oh=00_AfytFisJkXJa39luooxUg_R-ddQRAKs9kQCcKLW8OqLmlA&oe=69CDF167" alt="Banner">
 </div>
+
 <div class="container">
 
 <!-- ADDRESS -->
@@ -381,18 +358,6 @@ body {
 </div>
 
 <script>
-// SLIDER
-let slideIndex = 0;
-function showSlides() {
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(s => s.style.display="none");
-  slideIndex++;
-  if(slideIndex>slides.length) slideIndex=1;
-  slides[slideIndex-1].style.display="block";
-  setTimeout(showSlides,3000);
-}
-showSlides();
-
 // ADDRESS
 const addresses = ["269 Bùi Xương Trạch","12 Nguyễn Trãi","45 Lê Lợi","78 Trần Hưng Đạo"];
 function randomAddress() {
@@ -405,7 +370,7 @@ function copyAddress() {
 }
 
 // FORMAT SOLD
-function formatSold(n) { return n>=1000?(n/1000).toFixed(1)+"k":n; }
+function formatSold(n){ return n>=1000?(n/1000).toFixed(1)+"k":n; }
 
 // PRODUCTS
 const products = [];
@@ -422,8 +387,8 @@ for(let i=1;i<=50;i++){
   });
 }
 
-// ANIMATE COUNT UP
-function animateCount(el, val){
+// ANIMATE SOLD
+function animateCount(el,val){
   let current=0;
   const step=Math.ceil(val/50);
   const interval=setInterval(()=>{
