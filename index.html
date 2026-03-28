@@ -2,8 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>LẤY ĐƠN VÍ SPAYLATER</title>
-
+<title>Danh sách sản phẩm</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -14,7 +13,7 @@ body {
 
 /* HEADER */
 .header {
-  background: linear-gradient(135deg, #ff9a9e, #bc2772);
+  background: #bc2772;
   color: #fff;
   padding: 20px 0;
   text-align: center;
@@ -27,12 +26,12 @@ body {
 .slider {
   width: 95%;
   max-width: 1200px;
-  height: 450px; /* tăng chiều cao */
+  height: 450px;
   margin: 20px auto;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  background: #bc2772; /* nền khi ảnh chưa load */
+  background: #bc2772;
 }
 
 .slider img {
@@ -90,11 +89,9 @@ body {
 .btn-random { 
   background: #bc2772; 
   color: white; 
-  position: relative;
   font-size: 16px;
 }
 
-/* STICKER Random */
 .sticker {
   display: inline-block;
   background: linear-gradient(45deg,#ff5722,#ff9800);
@@ -130,7 +127,6 @@ body {
   min-width: 120px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  transition: 0.3s;
 }
 
 .filter-box input:focus,
@@ -173,17 +169,9 @@ body {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
 
-.loading-text {
-  font-size: 16px;
-  color: #555;
-  margin-top: 10px;
-  font-weight: bold;
-}
+.loading-text { font-size: 16px; color: #555; margin-top: 10px; font-weight: bold; }
 
 /* CARD */
 .card {
@@ -236,12 +224,6 @@ body {
   font-size: 12px;
   padding: 3px 6px;
   border-radius: 4px;
-  animation: badgeGlow 1.5s infinite alternate;
-}
-
-@keyframes badgeGlow {
-  0% { box-shadow: 0 0 4px rgba(255,255,255,0.5);}
-  100% { box-shadow: 0 0 12px rgba(255,255,255,0.9);}
 }
 
 .badge.mall { background: #bc2772; }
@@ -249,89 +231,60 @@ body {
 .badge.new { background: #1e90ff; }
 .badge.hot { background: #ff9800; }
 
-.info {
-  padding: 10px;
-}
+.info { padding: 10px; }
 
-.name {
-  font-size: 16px;
-  height: 40px;
-  overflow: hidden;
-  color: #000;
-}
+.name { font-size: 16px; height: 40px; overflow: hidden; color: #000; }
 
-.price {
-  color: #bc2772;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 6px 0;
-}
+.price { color: #bc2772; font-weight: bold; font-size: 18px; margin: 6px 0; }
 
-.meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-}
+.meta { display: flex; justify-content: space-between; font-size: 13px; }
 
 .rating { color: #f5a623; }
 .rating span { color: #555; }
 
 .sold { color: #000; }
 
-@keyframes bounceBtn {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
+/* BUTTONS MUA NGAY + CHIA SẺ */
+@keyframes bounceBtn { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
-.btn-buy {
+.btn-buy, .btn-share {
   width: 100%;
   border: none;
-  background: #bc2772;
-  color: white;
   padding: 10px;
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
-  animation: bounceBtn 1s infinite;
   transition: 0.3s;
+  margin-top: 5px;
 }
 
-.btn-buy:hover {
-  transform: scale(1.07);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  background: #991e60;
+.btn-buy {
+  background: #bc2772; color:white; animation: bounceBtn 1s infinite;
 }
+.btn-buy:hover { transform: scale(1.07); box-shadow: 0 5px 15px rgba(0,0,0,0.3); background:#991e60; }
+
+.btn-share { background:#ff9800; color:white; }
+.btn-share:hover { transform: scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,0.3); background:#e68900; }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-  .filter-box input, .filter-box select { flex: 1 1 100%; }
-}
-@media (max-width: 480px) {
-  .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-  .header { font-size: 20px; }
-  .price { font-size: 16px; }
-  .name { font-size: 14px; }
-  .img-box img { height: auto; }
-}
+@media (max-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); } .filter-box input,.filter-box select { flex:1 1 100%; } }
+@media (max-width: 480px) { .grid { grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); } .header{font-size:20px;} .price{font-size:16px;} .name{font-size:14px;} .img-box img{height:auto;} }
 </style>
 </head>
 <body>
 
 <div class="header">🛒 DANH SÁCH SẢN PHẨM</div>
 
-<!-- BANNER CHỈ 1 ẢNH -->
+<!-- Banner -->
 <div class="slider">
-  <img src="https://scontent.fsgn5-7.fna.fbcdn.net/v/t39.30808-6/661383124_1624121922128714_3909938372847597089_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=TqSkqnMInR8Q7kNvwEScPAh&_nc_oc=AdoTh-9lyV1m2yHzXzR2Sy8ksHYmfEQ6zOZ_tU1dNCNB00ecrxhmX2zQeMOU0Fhp5MsMVxNs0d4t5-6p6Q5Mossz&_nc_zt=23&_nc_ht=scontent.fsgn5-7.fna&_nc_gid=F37BPaGU8YtbMrZvIg-YEg&_nc_ss=7a32e&oh=00_AfytFisJkXJa39luooxUg_R-ddQRAKs9kQCcKLW8OqLmlA&oe=69CDF167" alt="Banner">
+  <img src="https://picsum.photos/1200/450?random=1" alt="Banner">
 </div>
 
 <div class="container">
 
 <!-- ADDRESS -->
 <div class="address-box">
-  <button class="btn btn-random" onclick="randomAddress()">
-    🎲 Random <span class="sticker">🔥</span>
-  </button>
+  <button class="btn btn-random" onclick="randomAddress()">🎲 Random <span class="sticker">🔥</span></button>
   <div id="address" class="address"></div>
   <button class="btn btn-copy" onclick="copyAddress()">Copy</button>
 </div>
@@ -358,58 +311,65 @@ body {
 </div>
 
 <script>
-// ADDRESS
-const addresses = ["269 Bùi Xương Trạch","12 Nguyễn Trãi","45 Lê Lợi","78 Trần Hưng Đạo"];
-function randomAddress() {
-  const i = Math.floor(Math.random()*addresses.length);
-  document.getElementById("address").innerText = addresses[i];
-}
-function copyAddress() {
-  navigator.clipboard.writeText(document.getElementById("address").innerText);
-  alert("Đã copy!");
-}
+// Address
+const addresses=["269 Bùi Xương Trạch","12 Nguyễn Trãi","45 Lê Lợi","78 Trần Hưng Đạo"];
+function randomAddress(){const i=Math.floor(Math.random()*addresses.length);document.getElementById("address").innerText=addresses[i];}
+function copyAddress(){navigator.clipboard.writeText(document.getElementById("address").innerText); alert("Đã copy!");}
 
-// FORMAT SOLD
-function formatSold(n){ return n>=1000?(n/1000).toFixed(1)+"k":n; }
+// Format sold
+function formatSold(n){return n>=1000?(n/1000).toFixed(1)+"k":n;}
 
-// PRODUCTS
-const products = [];
-const badges = ["sale","new","hot","mall"];
-for(let i=1;i<=50;i++){
-  products.push({
-    name:`Điện thoại ${i}`,
-    price: Math.floor(Math.random()*15000000)+3000000,
-    rating:(Math.random()*2+3).toFixed(1),
-    sold: Math.floor(Math.random()*2000),
-    image:`https://picsum.photos/300?${i}`,
-    link:"https://shopee.vn/",
-    badge: badges[Math.floor(Math.random()*badges.length)]
-  });
-}
+// Products
+const products = [
+  { name: "iPhone 13", price: 15000000, rating: 4.8, sold: 1200, image: "https://picsum.photos/300?1", link: "https://shopee.vn/" },
+  { name: "Samsung Galaxy A36", price: 9000000, rating: 4.5, sold: 800, image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mejqao7qa3urdc.webp", link: "https://shopee.vn/" },
+  { name: "Xiaomi Redmi Note 12", price: 5000000, rating: 4.2, sold: 1500, image: "https://picsum.photos/300?3", link: "https://shopee.vn/" },
+  { name: "OPPO Reno 10", price: 6500000, rating: 4.6, sold: 2000, image: "https://picsum.photos/300?4", link: "https://shopee.vn/" },
 
-// ANIMATE SOLD
+  // 20 sản phẩm ngẫu nhiên
+  { name: "Vivo Y76", price: 7200000, rating: 4.3, sold: 950, image: "https://picsum.photos/300?5", link: "https://shopee.vn/" },
+  { name: "Realme 9i", price: 5400000, rating: 4.1, sold: 670, image: "https://picsum.photos/300?6", link: "https://shopee.vn/" },
+  { name: "Samsung Galaxy M32", price: 6400000, rating: 4.4, sold: 1300, image: "https://picsum.photos/300?7", link: "https://shopee.vn/" },
+  { name: "Xiaomi Poco X4", price: 6500000, rating: 4.5, sold: 1400, image: "https://picsum.photos/300?8", link: "https://shopee.vn/" },
+  { name: "iPhone 12", price: 13500000, rating: 4.7, sold: 1100, image: "https://picsum.photos/300?9", link: "https://shopee.vn/" },
+  { name: "OPPO A95", price: 5800000, rating: 4.2, sold: 900, image: "https://picsum.photos/300?10", link: "https://shopee.vn/" },
+  { name: "Vivo V23", price: 8800000, rating: 4.6, sold: 800, image: "https://picsum.photos/300?11", link: "https://shopee.vn/" },
+  { name: "Realme C35", price: 4700000, rating: 4.1, sold: 1200, image: "https://picsum.photos/300?12", link: "https://shopee.vn/" },
+  { name: "Samsung Galaxy S21", price: 18000000, rating: 4.8, sold: 600, image: "https://picsum.photos/300?13", link: "https://shopee.vn/" },
+  { name: "Xiaomi Redmi 10C", price: 4300000, rating: 4.0, sold: 1400, image: "https://picsum.photos/300?14", link: "https://shopee.vn/" },
+  { name: "OPPO F19", price: 5200000, rating: 4.3, sold: 1000, image: "https://picsum.photos/300?15", link: "https://shopee.vn/" },
+  { name: "Vivo Y33s", price: 6100000, rating: 4.2, sold: 850, image: "https://picsum.photos/300?16", link: "https://shopee.vn/" },
+  { name: "Realme 8i", price: 4900000, rating: 4.3, sold: 1250, image: "https://picsum.photos/300?17", link: "https://shopee.vn/" },
+  { name: "Samsung Galaxy A52", price: 9200000, rating: 4.5, sold: 700, image: "https://picsum.photos/300?18", link: "https://shopee.vn/" },
+  { name: "Xiaomi Mi 11 Lite", price: 8400000, rating: 4.4, sold: 950, image: "https://picsum.photos/300?19", link: "https://shopee.vn/" },
+  { name: "OPPO Reno 6", price: 7800000, rating: 4.5, sold: 1100, image: "https://picsum.photos/300?20", link: "https://shopee.vn/" },
+  { name: "Vivo X70", price: 11000000, rating: 4.7, sold: 650, image: "https://picsum.photos/300?21", link: "https://shopee.vn/" },
+  { name: "Realme GT Neo 3", price: 9500000, rating: 4.6, sold: 720, image: "https://picsum.photos/300?22", link: "https://shopee.vn/" },
+  { name: "Samsung Galaxy Z Flip3", price: 25000000, rating: 4.9, sold: 300, image: "https://picsum.photos/300?23", link: "https://shopee.vn/" },
+  { name: "Xiaomi Redmi Note 11", price: 6000000, rating: 4.3, sold: 1250, image: "https://picsum.photos/300?24", link: "https://shopee.vn/" }
+];
+
+// Animate sold
 function animateCount(el,val){
-  let current=0;
-  const step=Math.ceil(val/50);
+  let current=0; const step=Math.ceil(val/50);
   const interval=setInterval(()=>{
     current+=step;
-    if(current>=val){ current=val; clearInterval(interval);}
+    if(current>=val){current=val; clearInterval(interval);}
     el.innerText=current>=1000?(current/1000).toFixed(1)+"k":current;
   },15);
 }
 
-// RENDER
-function renderProducts(list, initial=false){
+// Render products
+function renderProducts(list,initial=false){
   const box=document.getElementById("product-list");
   box.innerHTML="";
-  let showList = initial?list.slice(0,5):list;
+  let showList=initial?list.slice(0,5):list;
   showList.forEach(p=>{
     const card=document.createElement("div");
     card.className="card";
     card.innerHTML=`
       <a href="${p.link}" target="_blank">
         <div class="img-box">
-          <div class="badge ${p.badge}">${p.badge.toUpperCase()}</div>
           <img src="${p.image}" loading="lazy">
         </div>
         <div class="info">
@@ -417,18 +377,21 @@ function renderProducts(list, initial=false){
           <div class="price">₫${p.price.toLocaleString()}</div>
           <div class="meta">
             <div class="rating">⭐ <span>${p.rating}</span></div>
-            <div class="sold" id="sold-${p.name.replace(/\s/g,"")}">0</div>
+            <div class="sold" id="sold-${p.name.replace(/\s/g,"")}">Đã bán ${p.sold}</div>
           </div>
         </div>
       </a>
       <button class="btn-buy" onclick="window.open('${p.link}','_blank')">Mua ngay</button>
+      <button class="btn-share" onclick="shareProduct('${p.link}')">Chia sẻ</button>
     `;
     box.appendChild(card);
-    animateCount(document.getElementById(`sold-${p.name.replace(/\s/g,"")}`),p.sold);
   });
 }
 
-// FILTER
+// Share
+function shareProduct(link){navigator.clipboard.writeText(link); alert("Link sản phẩm đã copy: "+link);}
+
+// Filter
 function filterProducts(){
   const overlay=document.getElementById("spinner-overlay");
   overlay.style.display="block";
