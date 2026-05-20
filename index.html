@@ -1,281 +1,331 @@
+
+
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 <meta charset="UTF-8">
-
 <title>Tự động lấy đơn SPAYLATER</title>
-
 <style>
-
-body{
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  margin:0;
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  min-height: 100vh;
 }
 
 /* HEADER */
-
-.header{
-  background:#bc2772;
-  color:white;
-  text-align:center;
-  padding:20px;
-  font-size:28px;
-  font-weight:bold;
+.header {
+  background: #bc2772;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
 /* BANNER */
-
-.slider{
-  width:95%;
-  max-width:1200px;
-  margin:20px auto;
-  border-radius:10px;
-  overflow:hidden;
+.slider {
+  width: 95%;
+  max-width: 1200px;
+  height: 450px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: #bc2772;
 }
 
-.slider img{
-  width:100%;
-  display:block;
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
 }
 
 /* CONTAINER */
-
-.container{
-  width:95%;
-  max-width:1200px;
-  margin:auto;
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* ADDRESS */
-
-.address-box{
-  background:white;
-  padding:20px;
-  border-radius:8px;
-  margin-bottom:20px;
-  text-align:center;
+.address-box {
+  background: #fff;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 6px;
+  text-align: center;
 }
 
-.address{
-  background:#eee;
-  padding:12px;
-  border:1px solid #bc2772;
-  margin:12px 0;
-  font-size:16px;
-  border-radius:5px;
+.address {
+  background: #eee;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #bc2772;
+  font-size: 16px;
 }
 
-/* BUTTON */
-
-.btn{
-  border:none;
-  padding:10px 14px;
-  cursor:pointer;
-  font-weight:bold;
-  border-radius:5px;
-  margin:5px;
+/* BUTTONS */
+.btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  margin: 3px;
+  font-weight: bold;
+}
+/* ✅ đổi màu giống nút chia sẻ */
+.btn-copy, .btn-random { 
+  background: #ff9800;
+  color: white; 
+  font-size: 16px;
+  transition: 0.3s;
+}
 }
 
-.btn-random{
-  background:#ff9800;
-  color:white;
-  animation:bounce 1s infinite;
+.btn-copy { 
+  background: #ff5722; 
+  color: white; 
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-copy:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 
-.btn-copy{
-  background:#ff5722;
-  color:white;
+.btn-random:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 
-@keyframes bounce{
+/* ✅ random nhún */
+@keyframes bounceRandom {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
 
-  0%,100%{
-    transform:translateY(0);
-  }
+.btn-random {
+  animation: bounceRandom 1s infinite;
+}
+}
 
-  50%{
-    transform:translateY(-4px);
-  }
+.sticker {
+  display: inline-block;
+  background: linear-gradient(45deg,#ff5722,#ff9800);
+  color: white;
+  font-size: 14px;
+  padding: 3px 6px;
+  margin-left: 5px;
+  border-radius: 4px;
+  vertical-align: middle;
+  animation: bounce 1s infinite;
+}
 
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 /* FILTER */
-
-.filter-box{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  background:#eee;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:20px;
+.filter-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #eee;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
 }
 
 .filter-box input,
-.filter-box select{
-  flex:1;
-  padding:10px;
-  border-radius:5px;
-  border:1px solid #ccc;
+.filter-box select {
+  flex: 1 1 180px;
+  padding: 10px;
+  min-width: 120px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.filter-box input:focus,
+.filter-box select:focus {
+  outline: none;
+  border-color: #bc2772;
+  box-shadow: 0 0 6px rgba(188,39,114,0.5);
 }
 
 /* GRID */
-
-.grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fill,minmax(220px,1fr));
-  gap:15px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  min-height: 300px;
 }
+
+/* SPINNER */
+.spinner-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  text-align: center;
+  z-index: 9999;
+  background: rgba(255,255,255,0.95);
+  padding: 25px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #bc2772;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+
+.loading-text { font-size: 16px; color: #555; margin-top: 10px; font-weight: bold; }
 
 /* CARD */
-
-.card{
-  background:white;
-  border-radius:8px;
-  overflow:hidden;
-  transition:0.3s;
+.card {
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  transition: 0.4s;
+  position: relative;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
-.card img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
-.info{
-  padding:10px;
+.img-box {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  background: #fafafa;
+  overflow: hidden;
 }
 
-.name{
-  height:42px;
-  overflow:hidden;
-  font-size:15px;
+.img-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
 }
 
-.price{
-  color:#bc2772;
-  font-size:18px;
-  font-weight:bold;
-  margin:8px 0;
+.card:hover .img-box img {
+  transform: scale(1.1);
 }
 
-.meta{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
+.badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
-.btn-buy{
-  width:100%;
-  border:none;
-  background:#bc2772;
-  color:white;
-  padding:10px;
-  cursor:pointer;
-  font-weight:bold;
+.badge.mall { background: #bc2772; }
+.badge.sale { background: #ff5722; }
+.badge.new { background: #1e90ff; }
+.badge.hot { background: #ff9800; }
+
+.info { padding: 10px; }
+
+.name { font-size: 16px; height: 40px; overflow: hidden; color: #000; }
+
+.price { color: #bc2772; font-weight: bold; font-size: 18px; margin: 6px 0; }
+
+.meta { display: flex; justify-content: space-between; font-size: 13px; }
+
+.rating { color: #f5a623; }
+.rating span { color: #555; }
+
+.sold { color: #000; }
+
+/* BUTTONS MUA NGAY + CHIA SẺ */
+@keyframes bounceBtn { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+.btn-buy, .btn-share {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-top: 5px;
 }
 
-.btn-buy:hover{
-  background:#991e60;
+.btn-buy {
+  background: #bc2772; color:white; animation: bounceBtn 1s infinite;
 }
+.btn-buy:hover { transform: scale(1.07); box-shadow: 0 5px 15px rgba(0,0,0,0.3); background:#991e60; }
 
-/* MOBILE */
+.btn-share { background:#ff9800; color:white; }
+.btn-share:hover { transform: scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,0.3); background:#e68900; }
 
-@media(max-width:600px){
-
-  .grid{
-    grid-template-columns:
-    repeat(auto-fill,minmax(160px,1fr));
-  }
-
-}
-
+/* RESPONSIVE */
+@media (max-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); } .filter-box input,.filter-box select { flex:1 1 100%; } }
+@media (max-width: 480px) { .grid { grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); } .header{font-size:20px;} .price{font-size:16px;} .name{font-size:14px;} .img-box img{height:auto;} }
 </style>
 </head>
-
 <body>
 
-<div class="header">
-🛒 DANH SÁCH SẢN PHẨM
-</div>
+<div class="header">🛒 DANH SÁCH SẢN PHẨM</div>
 
-<!-- BANNER -->
-
+<!-- Banner -->
 <div class="slider">
-  <img src="https://github.com/minhhoangggg190625/h-nh-webdd/blob/main/15.jpg?raw=true">
+    <img src="https://github.com/minhhoangggg190625/h-nh-webdd/blob/main/15.jpg?raw=true">,
 </div>
-
 <div class="container">
 
-  <!-- RANDOM ADDRESS -->
+<!-- ADDRESS -->
+<div class="address-box">
+  <button class="btn btn-random" onclick="randomAddress()">🎲 Random <span class="sticker">🔥</span></button>
+  <div id="address" class="address"></div>
+  <button class="btn btn-copy" onclick="copyAddress()">Copy</button>
+</div>
 
-  <div class="address-box">
+<!-- FILTER -->
+<div class="filter-box">
+  <input type="text" id="search" placeholder="Tìm sản phẩm...">
+  <input type="number" id="money" placeholder="Số tiền (đ)">
+  <select id="sort">
+    <option value="desc">Giá: Cao → Thấp</option>
+    <option value="asc">Giá: Thấp → Cao</option>
+  </select>
+</div>
 
-    <button
-      class="btn btn-random"
-      onclick="randomAddress()"
-    >
-      🎲 Random
-    </button>
+<!-- LIST -->
+<div id="product-list" class="grid"></div>
 
-    <div
-      id="address"
-      class="address"
-    ></div>
-
-    <button
-      class="btn btn-copy"
-      onclick="copyAddress()"
-    >
-      Copy
-    </button>
-
-  </div>
-
-  <!-- FILTER -->
-
-  <div class="filter-box">
-
-    <input
-      type="text"
-      id="search"
-      placeholder="Tìm sản phẩm..."
-    >
-
-    <input
-      type="number"
-      id="money"
-      placeholder="Số tiền tối đa"
-    >
-
-    <select id="sort">
-
-      <option value="desc">
-        Giá cao → thấp
-      </option>
-
-      <option value="asc">
-        Giá thấp → cao
-      </option>
-
-    </select>
-
-  </div>
-
-  <!-- PRODUCTS -->
-
-  <div
-    id="product-list"
-    class="grid"
-  ></div>
+<!-- SPINNER -->
+<div class="spinner-overlay" id="spinner-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Đang cập nhật kho hàng...</div>
+</div>
 
 </div>
 
@@ -438,185 +488,105 @@ function copyAddress(){
 
 }
 
-/* =========================================
-   PRODUCTS
-========================================= */
-
+// Products
 const products = [
 
-{
-  name:"Samsung Galaxy A07 4GB/128GB",
-  price:2200000,
-  rating:4.3,
-  sold:950,
-  image:"https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlac3o5eghs204.webp",
-  link:"https://s.shopee.vn/6VJlDpkC1x"
-},
+  
+  { name: "Samsung Galaxy A07 4GB/128GB", price: 2200000, rating: 4.3, sold: 950, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlac3o5eghs204.webp", link: "https://s.shopee.vn/6VJlDpkC1x" },	
+  
+{ name: "Xiaomi Redmi 15C 4GB/128GB", price: 2590000, rating: 4.6, sold: 2000, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmu6p26yrair49.webp", link: "https://s.shopee.vn/1VvWLLR1uR" },	  
+  
+{ name: "Xiaomi Redmi 15C 6GB/128GB", price: 3050000, rating: 4.4, sold: 1300, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mllmnofzzcas10.webp", link: "https://s.shopee.vn/10yqI3V97z" },	
+  
+  { name: "Xiaomi Redmi 15 8GB/128GB", price: 3400000, rating: 4.5, sold: 1400, image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mggb30jcrh8q9f.webp", link: "https://s.shopee.vn/50W1mLNucO" },	
+  
+    
+  
+{ name: "Samsung Galaxy A17 LTE 8/128", price: 3550000, rating: 4.1, sold: 1200, image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mfazv5z71lvvde.webp", link: "https://s.shopee.vn/2BAWoaZhIH" },	
+  
+  { name: "Xiaomi Redmi Note 15 4G 6GB/128GB", price: 4000000, rating: 4.4, sold: 1300, image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjb16xdtdwqsa3.webp", link: "https://s.shopee.vn/qfZeLMpHt" }	,
+  
+{ name: "Samsung Galaxy A17 5G 8/128", price: 4400000, rating: 4.0, sold: 1400, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmzh0cummqyq8f.webp", link: "https://s.shopee.vn/1qY6reD3fI" },	
+  
+{ name: " Oppo A5i Pro 8GB/128GB ", price: 4600000, rating: 4.2, sold: 1500, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mn2dkocmff2c50.webp", link: "https://s.shopee.vn/809W3l7aJB " },
+  
+  { name: "Samsung Galaxy A26 5G 8GB/128GB ", price: 4600000, rating: 4.2, sold: 1500, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mk4u98tiy7er2f.webp", link: "https://s.shopee.vn/2g72dlBIof" },	
+{ name: "Samsung Galaxy A56 5G 8GB/128GB", price: 6650000, rating: 4.7, sold: 1100, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlhnnyd554ozec.webp", link: "https://s.shopee.vn/70Fwo66ddC" }	  
+  
 
-{
-  name:"Xiaomi Redmi 15C 4GB/128GB",
-  price:2590000,
-  rating:4.6,
-  sold:2000,
-  image:"https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmu6p26yrair49.webp",
-  link:"https://s.shopee.vn/1VvWLLR1uR"
-},
-
-{
-  name:"Samsung Galaxy A56 5G 8GB/128GB",
-  price:6880000,
-  rating:4.7,
-  sold:1100,
-  image:"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mfdhbz7f07bdad@resize_w450_nl.webp",
-  link:"https://s.shopee.vn/7Ktx1eMwXo"
-}
-
+ 
 ];
+// Animate sold
+function animateCount(el,val){
+  let current=0; const step=Math.ceil(val/50);
+  const interval=setInterval(()=>{
+    current+=step;
+    if(current>=val){current=val; clearInterval(interval);}
+    el.innerText=current>=1000?(current/1000).toFixed(1)+"k":current;
+  },15);
+}
 
-/* =========================================
-   RENDER PRODUCTS
-========================================= */
-
-function renderProducts(list){
-
-  const box =
-  document.getElementById("product-list");
-
-  box.innerHTML = "";
-
-  list.forEach(p=>{
-
-    const card =
-    document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-
+// Render products
+function renderProducts(list,initial=false){
+  const box=document.getElementById("product-list");
+  box.innerHTML="";
+  let showList=initial?list.slice(0,5):list;
+  showList.forEach(p=>{
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML=`
       <a href="${p.link}" target="_blank">
-
-        <img src="${p.image}">
-
-        <div class="info">
-
-          <div class="name">
-            ${p.name}
-          </div>
-
-          <div class="price">
-            ₫${p.price.toLocaleString()}
-          </div>
-
-          <div class="meta">
-
-            <div>
-              ⭐ ${p.rating}
-            </div>
-
-            <div>
-              Đã bán ${p.sold}
-            </div>
-
-          </div>
-
+        <div class="img-box">
+          <img src="${p.image}" loading="lazy">
         </div>
-
+        <div class="info">
+          <div class="name">${p.name}</div>
+          <div class="price">₫${p.price.toLocaleString()}</div>
+          <div class="meta">
+            <div class="rating">⭐ <span>${p.rating}</span></div>
+            <div class="sold" id="sold-${p.name.replace(/\s/g,"")}">Đã bán ${p.sold}</div>
+          </div>
+        </div>
       </a>
-
-      <button
-      class="btn-buy"
-      onclick="window.open('${p.link}','_blank')">
-
-      Mua ngay
-
-      </button>
-
+      <button class="btn-buy" onclick="window.open('${p.link}','_blank')">Mua ngay</button>
+      <button class="btn-share" onclick="shareProduct('${p.link}')">Chia sẻ</button>
     `;
-
     box.appendChild(card);
-
   });
-
 }
 
-/* =========================================
-   FILTER
-========================================= */
+// Share
+function shareProduct(link){navigator.clipboard.writeText(link); alert("Link sản phẩm đã copy: "+link);}
 
+// Filter
 function filterProducts(){
-
-  let list = [...products];
-
-  const keyword =
-  document.getElementById("search")
-  .value
-  .toLowerCase();
-
-  const money =
-  document.getElementById("money")
-  .value;
-
-  const sort =
-  document.getElementById("sort")
-  .value;
-
-  if(keyword){
-
-    list =
-    list.filter(p=>
-      p.name
-      .toLowerCase()
-      .includes(keyword)
-    );
-
-  }
-
-  if(money){
-
-    list =
-    list.filter(p=>
-      p.price <= money
-    );
-
-  }
-
-  list.sort((a,b)=>
-
-    sort==="asc"
-    ? a.price-b.price
-    : b.price-a.price
-
-  );
-
-  renderProducts(list);
-
+  const overlay=document.getElementById("spinner-overlay");
+  overlay.style.display="block";
+  setTimeout(()=>{
+    let list=[...products];
+    const s=search.value.toLowerCase();
+    const m=money.value;
+    const sort=sortEl.value;
+    if(s) list=list.filter(p=>p.name.toLowerCase().includes(s));
+    if(m) list=list.filter(p=>p.price<=m);
+    list.sort((a,b)=>sort==="asc"?a.price-b.price:b.price-a.price);
+    renderProducts(list);
+    overlay.style.display="none";
+  },500);
 }
 
-/* =========================================
-   EVENTS
-========================================= */
+const search=document.getElementById("search");
+const money=document.getElementById("money");
+const sortEl=document.getElementById("sort");
 
-document.getElementById("search")
-.oninput = filterProducts;
+search.oninput=filterProducts;
+money.oninput=filterProducts;
+sortEl.onchange=filterProducts;
 
-document.getElementById("money")
-.oninput = filterProducts;
-
-document.getElementById("sort")
-.onchange = filterProducts;
-
-/* =========================================
-   LOAD
-========================================= */
-
-window.onload = ()=>{
-
+window.onload=()=>{
   randomAddress();
-
-  renderProducts(products);
-
+  renderProducts(products,false);
 };
-
 </script>
 
 </body>
