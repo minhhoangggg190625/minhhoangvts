@@ -1,4 +1,4 @@
- 
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -330,154 +330,82 @@ body {
 </div>
 
 <script>
+// Address
+const addresses = [
+"144 / 2 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"144 / 6 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"144 / 6 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"144 / 15 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"144 / 21 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"392/15 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"367/9 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"259/8 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"106 / 47 / 16 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"106 / 47 / 23 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"162 / 4 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"162 / 8 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"162 / 12 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"162 / 17 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"162 / 24 Bình Lợi, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"122 / 2 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"123 / 6 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"184 / 4 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"188 / 9 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"242 / 3 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"241 / 7 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"244/ 13 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"315 / 5 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"311 / 10 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"192 / 2 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"190 / 6 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"189 / 12 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"178 / 4 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"180 / 9 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
+"69 / 11 Đặng Thùy Trâm, Phường Bình Lợi Trung, Tp. Hồ Chí Minh"
 
-/* =========================================
-   TOẠ ĐỘ NHÀ
-========================================= */
-
-const HOME_LAT =
-10.833053123546762;
-
-const HOME_LNG =
-106.70668800826569;
-
-/* =========================================
-   ĐƯỜNG + PHƯỜNG THẬT
-========================================= */
-
-const locations = [
-
-{
-  street:"Bình Lợi",
-  ward:"Phường Bình Lợi Trung"
-},
-
-
-
-{
-  street:"Đặng Thùy Trâm",
-  ward:"Phường Bình Lợi Trung"
-},
-
-
-
+"5 Đường số 12D, Phường Long Bình, Tp. Hồ Chí Minh"
+"11 Đường số 12D, Phường Long Bình, Tp. Hồ Chí Minh"
+"18 Đường số 12D, Phường Long Bình, Tp. Hồ Chí Minh"
+"24 Đường số 12D, Phường Long Bình, Tp. Hồ Chí Minh"
+"37 Đường số 12D, Phường Long Bình, Tp. Hồ Chí Minh"
+"7 Đường số 12B, Phường Long Bình, Tp. Hồ Chí Minh"
+"15 Đường số 12B, Phường Long Bình, Tp. Hồ Chí Minh"
+"22 Đường số 12B, Phường Long Bình, Tp. Hồ Chí Minh"
+"31 Đường số 12B, Phường Long Bình, Tp. Hồ Chí Minh"
+"44 Đường số 12B, Phường Long Bình, Tp. Hồ Chí Minh"
+"6 Đường số 12A, Phường Long Bình, Tp. Hồ Chí Minh"
+"14 Đường số 12A, Phường Long Bình, Tp. Hồ Chí Minh"
+"27 Đường số 12A, Phường Long Bình, Tp. Hồ Chí Minh"
+"39 Đường số 12A, Phường Long Bình, Tp. Hồ Chí Minh"
+"51 Đường số 12A, Phường Long Bình, Tp. Hồ Chí Minh"
+"9 Đường số 11, Phường Long Bình, Tp. Hồ Chí Minh"
+"16 Đường số 11, Phường Long Bình, Tp. Hồ Chí Minh"
+"28 Đường số 11, Phường Long Bình, Tp. Hồ Chí Minh"
+"41 Đường số 11, Phường Long Bình, Tp. Hồ Chí Minh"
+"55 Đường số 11, Phường Long Bình, Tp. Hồ Chí Minh"
+"12 Đường số 12, Phường Long Bình, Tp. Hồ Chí Minh"
+"19 Đường số 12, Phường Long Bình, Tp. Hồ Chí Minh"
+"33 Đường số 12, Phường Long Bình, Tp. Hồ Chí Minh"
+"47 Đường số 12, Phường Long Bình, Tp. Hồ Chí Minh"
+"58 Đường số 12, Phường Long Bình, Tp. Hồ Chí Minh"
 ];
 
-/* =========================================
-   RANDOM SỐ NHÀ
-========================================= */
-
-function randomHouse(){
-
-  const a =
-  Math.floor(Math.random()*250)+1;
-
-  const b =
-  Math.floor(Math.random()*60)+1;
-
-  const c =
-  Math.floor(Math.random()*30)+1;
-
-  const type =
-  Math.floor(Math.random()*3);
-
-  if(type===0){
-
-    return `${a}`;
-
-  }
-
-  if(type===1){
-
-    return `${a} / ${b}`;
-
-  }
-
-  return `${a} / ${b} / ${c}`;
-
-}
-
-/* =========================================
-   RANDOM TOẠ ĐỘ 1-3KM
-========================================= */
-
-function randomNearbyPoint(){
-
-  const radius =
-  Math.random()*1000 + 3000;
-
-  const angle =
-  Math.random()*2*Math.PI;
-
-  const dx =
-  radius*Math.cos(angle);
-
-  const dy =
-  radius*Math.sin(angle);
-
-  const lat =
-  HOME_LAT + (dy/111320);
-
-  const lng =
-  HOME_LNG + (
-    dx /
-    (
-      111320 *
-      Math.cos(HOME_LAT*Math.PI/180)
-    )
-  );
-
-  return {lat,lng};
-
-}
-
-/* =========================================
-   RANDOM ĐỊA CHỈ
-========================================= */
-
 function randomAddress(){
-
-  const point =
-  randomNearbyPoint();
-
-  const location =
-  locations[
-    Math.floor(
-      Math.random()*locations.length
-    )
-  ];
-
-  const house =
-  randomHouse();
-
-  const finalAddress =
-  `${house} ${location.street} , ${location.ward}, Tp. Hồ Chí Minh`;
-
-  document.getElementById("address")
-  .innerText = finalAddress;
-
-  console.log(point);
-
+  const i = Math.floor(Math.random()*addresses.length);
+  document.getElementById("address").innerText = addresses[i];
 }
-
-/* =========================================
-   COPY
-========================================= */
 
 function copyAddress(){
-
-  navigator.clipboard.writeText(
-    document.getElementById("address").innerText
-  );
-
+  navigator.clipboard.writeText(document.getElementById("address").innerText);
   alert("Đã copy!");
-
 }
+
+// Format sold
+function formatSold(n){return n>=1000?(n/1000).toFixed(1)+"k":n;}
 
 // Products
 const products = [
 
-  
 { name: "Samsung Galaxy A07 4GB/128GB", price: 2200000, rating: 4.3, sold: 950, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlac3o5eghs204.webp", link: "https://s.shopee.vn/6VJlDpkC1x" },	
 { name: "Xiaomi Redmi 15C 4GB/128GB", price: 2590000, rating: 4.6, sold: 2000, image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmu6p26yrair49.webp", link: "https://s.shopee.vn/1VvWLLR1uR" },	
 { name: "Xiaomi Redmi 15C 6GB/128GB", price: 3050000, rating: 4.4, sold: 1300, image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mgd6a8wd0gena3.webp", link: "https://s.shopee.vn/AAEUmB3CeE" },	
